@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.util.LinkedList;
 
 public class Progetto {
-    LinkedList<Membro> membri = new LinkedList<>();
+    private LinkedList<Membro> membri = new LinkedList<>();
 
     enum SPECIALIZZAZIONE { INFORMATICA, TELECOMUNIICAZIONE, ELETTRONICA, AUTOMAZIONE };
     enum COLLABORATORE { INTERNO, ESTERNO };
@@ -17,11 +17,13 @@ public class Progetto {
         aggiungiMembro(new Tecnico(nome, cognome, dataAssunzione, specializzazione, collaboratore));
     }
     public void aggiungiMembro(Membro membro){
-        membri.add(membro);
+        this.membri.add(membro);
     }
     public int calcoloTotale(){
-        int costo = this.membri.stream().map(Membro::getCosto).reduce(0, Integer::sum);
+        return this.membri.stream().map(Membro::getCosto).reduce(0, Integer::sum);
+    }
 
-        return costo;
+    public LinkedList<Membro> getMembri() {
+        return this.membri;
     }
 }
